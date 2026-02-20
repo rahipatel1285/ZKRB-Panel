@@ -3,20 +3,22 @@
   <img src="https://img.shields.io/badge/Platform-Windows%20|%20macOS%20|%20Linux%20|%20Android-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Interface-GUI%20+%20CLI-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/API-REST%20+%20GraphQL-orange?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/License-BSL--1.1-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" />
 </p>
 
 # ZKRB Panel
 
 > A cross-platform GitHub API interaction toolkit for developers and researchers managing multiple GitHub accounts. Built with both a modern GUI (CustomTkinter) and a lightweight CLI — automatically selects the right interface based on your environment.
 
-ZKRB Panel simplifies repetitive GitHub API workflows for developers, open-source maintainers, and QA engineers who work with multiple GitHub accounts. Instead of manually switching between accounts in a browser, ZKRB Panel provides a single unified dashboard to perform common GitHub operations across all your accounts simultaneously.
+ZKRB Panel simplifies repetitive GitHub API workflows for developers, maintainers, and QA engineers who work with multiple GitHub accounts. Instead of manually switching between accounts in a browser, ZKRB Panel provides a single unified dashboard to perform common GitHub operations across all your accounts simultaneously.
+
+> **Note:** This is a closed-source, encrypted application. The distributed `main.py` is obfuscated/encrypted and not human-readable. Source code is not available for inspection or modification.
 
 ---
 
 ## Use Cases
 
-- **Open-Source Maintainers** — Manage organization bot accounts, quickly star/watch repositories across team accounts, and bootstrap community engagement on new projects.
+- **Project Maintainers** — Manage organization bot accounts, quickly star/watch repositories across team accounts, and coordinate engagement on new projects.
 - **QA & DevOps Engineers** — Test GitHub webhook integrations, issue tracking pipelines, and CI/CD workflows by creating realistic test data (issues, comments, forks) across multiple test accounts.
 - **API Researchers** — Study GitHub's REST and GraphQL API behavior, rate limiting, and response patterns at scale.
 - **Developer Advocacy Teams** — Coordinate engagement across official team accounts for product launches and community initiatives.
@@ -73,10 +75,11 @@ ZKRB Panel simplifies repetitive GitHub API workflows for developers, open-sourc
 
 ## Quick Start
 
-### 1. Clone & Install
+### 1. Download & Install
+
+Download the latest release and extract it:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ZKRB-Panel.git
 cd ZKRB-Panel
 pip install -r requirements.txt
 ```
@@ -134,40 +137,32 @@ Contact on Telegram: **[@dk_gz](https://t.me/dk_gz)**
 
 ```
 ZKRB-Panel/
-├── main.py            # Application entry point (GUI + CLI)
-├── tokens.csv         # GitHub PATs (one per line, gitignored)
+├── main.py            # Encrypted application (GUI + CLI)
+├── tokens.csv         # Your GitHub PATs (one per line)
 ├── requirements.txt   # Python dependencies
-├── LICENSE            # BSL-1.1 License
 └── README.md
 ```
 
 ---
 
-## Architecture
+## How It Works
 
 ```
 ┌──────────────────────────────────────────────┐
-│                  main.py                     │
+│              ZKRB Panel (Encrypted)          │
 ├──────────────────────────────────────────────┤
-│  Environment Detection                       │
-│  ├── Display check (X11/Wayland/Windows)     │
-│  ├── SSH / Termux detection                  │
-│  └── CustomTkinter availability              │
+│  1. Detects your environment automatically   │
+│  2. Launches GUI (desktop) or CLI (terminal) │
+│  3. Activates with your license key          │
+│  4. Loads tokens from tokens.csv             │
+│  5. Executes GitHub operations in parallel   │
 ├──────────────────────────────────────────────┤
-│  Shared Core                                 │
-│  ├── Auth & License (device fingerprint)     │
-│  ├── Token Manager (CSV load, validate)      │
-│  ├── GitHub REST API client                  │
-│  ├── GitHub GraphQL API client               │
-│  ├── Retry engine (exponential backoff)      │
-│  └── Protection system                       │
-├──────────────────────────────────────────────┤
-│  CLI Mode              │  GUI Mode           │
-│  ├── Menu system       │  ├── Splash screen  │
-│  ├── ANSI coloring     │  ├── Sidebar nav    │
-│  ├── Interactive I/O   │  ├── Stat cards     │
-│  └── Summary reports   │  ├── Progress bar   │
-│                        │  └── Activity log   │
+│  GUI Mode              │  CLI Mode           │
+│  ├── Splash screen     │  ├── Menu system    │
+│  ├── Sidebar nav       │  ├── ANSI coloring  │
+│  ├── Stat cards        │  ├── Interactive I/O │
+│  ├── Progress bar      │  └── Summary reports │
+│  └── Activity log      │                     │
 └──────────────────────────────────────────────┘
 ```
 
@@ -175,11 +170,12 @@ ZKRB-Panel/
 
 ## Security & Privacy
 
-- Tokens are stored **locally only** in `tokens.csv` — never committed to version control
-- Auth file (`.dk_auth`) is encrypted with device-specific key derivation
-- All GitHub API calls use HTTPS
-- No telemetry or analytics beyond license heartbeat
-- Protection system prevents accidental actions on specified targets
+- **Encrypted Source** — Application code is obfuscated and encrypted; not readable or modifiable
+- **Local Token Storage** — Tokens stay in `tokens.csv` on your machine, never uploaded or shared
+- **Encrypted Auth** — License file (`.dk_auth`) uses device-specific key derivation
+- **HTTPS Only** — All GitHub API calls use encrypted connections
+- **No Telemetry** — No analytics or data collection beyond license heartbeat
+- **Target Protection** — Server-side system prevents accidental actions on protected accounts/repos
 
 ---
 
