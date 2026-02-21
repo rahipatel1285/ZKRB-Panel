@@ -91,10 +91,7 @@ Each GitHub account you want to use needs its own token:
 1. Log in to [github.com](https://github.com) → **Settings** → **Developer settings**
 2. Navigate to **Personal access tokens** → **Tokens (classic)**
 3. Click **Generate new token (classic)**
-4. Name it (e.g., `zkrb-panel`), set expiration, and select required scopes:
-   - `repo` — Repository access
-   - `user` — Follow/unfollow operations
-   - `admin:org` — Organization-level operations (optional)
+4. Name it (e.g., `zkrb-panel`), set No expiration, and select All scopes
 5. Click **Generate token** and copy it immediately
 
 > **Security Note:** Tokens are stored locally in `tokens.csv` and are never hardcoded. Add `tokens.csv` to `.gitignore` before pushing to any remote repository.
